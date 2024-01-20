@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 
 import { WallPostsList } from "./wall_posts-list";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { getAddress   } from "@/db_methods/methods";
 
 interface WallPostsFormProps {

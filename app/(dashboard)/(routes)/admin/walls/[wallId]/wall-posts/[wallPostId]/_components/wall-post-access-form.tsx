@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import { Editor } from "@/components/editor";
 import { Preview } from "@/components/preview";
 import { Checkbox } from "@/components/ui/checkbox";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { getAddress } from "@/db_methods/methods";
 
 interface WallPostAccessFormProps {

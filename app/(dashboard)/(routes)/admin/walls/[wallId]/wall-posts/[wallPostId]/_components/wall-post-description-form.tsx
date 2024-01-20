@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Editor } from "@/components/editor";
 import { Preview } from "@/components/preview";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { getAddress } from "@/db_methods/methods";
 
 interface WallPostDescriptionFormProps {

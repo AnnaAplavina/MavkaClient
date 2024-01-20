@@ -2,7 +2,7 @@ import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 
 interface WallProgressProps {
-  value: number;
+  value: boolean;
   variant?: "default" | "success",
   size?: "default" | "sm";
 };
@@ -26,7 +26,7 @@ export const WallProgress = ({
     <div>
       <Progress
         className="h-2"
-        value={value}
+        value={value ? 1 : 0}
         variant={variant}
       />
       <p className={cn(
@@ -34,7 +34,7 @@ export const WallProgress = ({
         colorByVariant[variant || "default"],
         sizeByVariant[size || "default"],
       )}>
-        {Math.round(value)}% Complete
+        {value ? "Unsubscribe" : "Subscribe"}
       </p>
     </div>
   )

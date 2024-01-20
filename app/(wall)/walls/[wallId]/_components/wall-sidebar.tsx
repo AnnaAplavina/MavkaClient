@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { WallPostContent, WallContent, ProgressContent } from "@/db_interfaces/interfaces";
 import { redirect } from "next/navigation";
 

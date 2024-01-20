@@ -11,7 +11,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import { FileUpload } from "@/components/file-upload";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { getAddress } from "@/db_methods/methods";
 
 interface ImageFormProps {

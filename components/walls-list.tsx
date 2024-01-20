@@ -6,14 +6,13 @@ interface CategoryContent {
   name: string;
 }
 
-type WallWithProgressWithCategory = WallContent & {
+type WallWithCategory = WallContent & {
   category: CategoryContent | null;
   wall_posts: { id: string }[];
-  progress: number | null;
 };
 
 interface WallsListProps {
-  items: WallWithProgressWithCategory[];
+  items: WallWithCategory[];
 }
 
 export const WallsList = ({
@@ -30,7 +29,7 @@ export const WallsList = ({
             id={item.wall_id}
             title={item.title}
             imageUrl={item.image_url!}
-            progress={item.progress}
+            progress={false}
             category={item?.category?.name!}
           />
         ))}

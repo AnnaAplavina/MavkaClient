@@ -28,7 +28,7 @@ export const getWallPost = async ({
 
     if (!is_member) {
       // TODO Redirect 
-      throw new Error("Вам недоступен этот раздел курса");
+      throw new Error("Вам недоступна эта стена");
     }
 
     attachments = await getAttachments({wallPostId});

@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 
 import { isAdmin } from "@/lib/admin";

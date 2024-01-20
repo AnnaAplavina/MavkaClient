@@ -1,6 +1,6 @@
 "use client";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import axios from "axios";
 import { Trash } from "lucide-react";
 import { useState } from "react";

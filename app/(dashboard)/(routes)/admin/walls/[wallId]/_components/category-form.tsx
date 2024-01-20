@@ -21,7 +21,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { Combobox } from "@/components/ui/combobox";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { getAddress } from "@/db_methods/methods";
 
 interface CategoryFormProps {

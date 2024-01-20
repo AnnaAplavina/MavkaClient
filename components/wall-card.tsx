@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { GalleryVerticalEnd } from "lucide-react";
 
 import { IconBadge } from "@/components/icon-badge";
 import { WallProgress } from "@/components/wall-progress";
@@ -8,7 +8,7 @@ interface WallCardProps {
   id: string;
   title: string;
   imageUrl: string;
-  progress: number | null;
+  progress: boolean | null;
   category: string;
 };
 
@@ -38,21 +38,21 @@ export const WallCard = ({
           </p>
           <div className="my-3 flex items-center gap-x-2 text-sm md:text-xs">
             <div className="flex items-center gap-x-1 text-slate-500">
-              <IconBadge size="sm" icon={BookOpen} />
+              <IconBadge size="sm" icon={GalleryVerticalEnd} />
               <span>
-                Уроков
+                Записей
               </span>
             </div>
           </div>
           {progress !== null ? (
             <WallProgress
-              variant={progress === 100 ? "success" : "default"}
+              variant={progress ? "success" : "default"}
               size="sm"
               value={progress}
             />
           ) : (
             <p className="text-md md:text-sm font-medium text-slate-700">
-              {"Вы ещё не занимались на этом курсе"}
+              {"Вы ещё не подписаны на эту стенку"}
             </p>
           )}
         </div>

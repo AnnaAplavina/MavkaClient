@@ -1,6 +1,6 @@
 "use client";
 
-import { UserButton, useAuth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import { isAdmin } from "@/lib/admin";
 import { SearchInput } from "./search-input";
 
 export const NavbarRoutes = () => {
-  const { userId } = useAuth();
+  const { userId } = auth();
   const pathname = usePathname();
 
   const isAdminPage = pathname?.startsWith("/admin");
@@ -40,9 +40,9 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : null}
-        <UserButton
+        {/* <UserButton
           afterSignOutUrl="/"
-        />
+        /> */}
       </div>
     </>
   )

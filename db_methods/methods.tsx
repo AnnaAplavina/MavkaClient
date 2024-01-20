@@ -360,3 +360,31 @@ export async function getUserSub() {
 export async function getUserFeedback() {
     return null;
 }
+
+export async function getDashboardWalls(userId: string) {
+    const recommendedWalls = [{
+        wall_id: "0",
+        title: "title 0",
+        image_url: "https://upload.wikimedia.org/wikipedia/ru/1/14/%D0%9D%D0%BE%D1%80%D1%82%D0%BE%D0%BD%2C-%D0%9F%D0%B8%D1%82%D1%82-%28%D0%91%D0%BE%D0%B9%D1%86%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BB.jpg",
+        description: "description 0",
+        owner_id: "0",
+        admin_id: "0",
+        is_available: true,
+        category_id: "0",
+        created_at: "2027-07-27",
+        category: null, 
+        wall_posts: [{id: 0}, {id: 1}]}];
+    const subbedWalls = [{
+        wall_id: "0",
+        title: "title 0",
+        image_url: "https://upload.wikimedia.org/wikipedia/ru/1/14/%D0%9D%D0%BE%D1%80%D1%82%D0%BE%D0%BD%2C-%D0%9F%D0%B8%D1%82%D1%82-%28%D0%91%D0%BE%D0%B9%D1%86%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9-%D0%BA%D0%BB.jpg",
+        description: "description 0",
+        owner_id: "0",
+        admin_id: "0",
+        is_available: true,
+        category_id: "0",
+        created_at: "2027-07-27",
+        category: null, 
+        wall_posts: [{id: 0}, {id: 1}]}];
+    return { recommendedWalls, subbedWalls };
+}

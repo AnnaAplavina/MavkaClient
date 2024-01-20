@@ -1,5 +1,5 @@
 import { isAdmin } from "@/lib/admin";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { redirect } from "next/navigation";
 
 const AdminLayout = ({

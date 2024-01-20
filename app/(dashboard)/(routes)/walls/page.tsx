@@ -1,8 +1,8 @@
-import { auth } from "@clerk/nextjs"
 import { redirect } from "next/navigation";
 import { CheckCircle, Clock } from "lucide-react";
 
-import { getDashboardWalls } from "@/actions/get-recommended";
+import { getDashboardWalls } from "@/db_methods/methods";
+import { auth } from "@/app/coolAuth";
 import { WallsList } from "@/components/walls-list";
 
 import { InfoCard } from "./_components/info-card";
@@ -14,10 +14,7 @@ export default async function Dashboard() {
     return redirect("/");
   }
 
-  const {
-    completedWalls,
-    wallsInProgress
-  } = await getDashboardWalls(userId);
+  const { recommendedWalls, subbedWalls } = await getDashboardWalls(userId);
 
   return (
     <div className="p-6 space-y-4">
@@ -25,17 +22,17 @@ export default async function Dashboard() {
        <InfoCard
           icon={Clock}
           label="In Progress"
-          numberOfItems={wallsInProgress.length}
+          numberOfItems={recommendedWalls.length}
        />
        <InfoCard
           icon={CheckCircle}
           label="Completed"
-          numberOfItems={completedWalls.length}
+          numberOfItems={subbedWalls.length}
           variant="success"
        />
       </div>
       <WallsList
-        items={[...wallsInProgress, ...completedWalls]}
+        items={[...recommendedWalls, ...subbedWalls]}
       />
     </div>
   )

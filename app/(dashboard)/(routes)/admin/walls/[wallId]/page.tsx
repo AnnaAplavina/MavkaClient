@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@/app/coolAuth";
 import { redirect } from "next/navigation";
 import { File, LayoutDashboard, ListChecks } from "lucide-react";
 import { getAttachmentsByWall, getCategories, getWallPosts, getWallsByIdAndAdmin } from "@/db_methods/methods";
@@ -44,7 +44,7 @@ const WallsIdPage = async ({params}:{params:{ wallId: string }}) => {
     <>
       {!wall.isPublished && (
         <Banner
-          label="Этот курс находится на этапе редактирования и не доступен студентам."
+          label="Эта стенка находится на этапе редактирования и не доступна пользователям."
         />
       )}
       <div className="p-6">

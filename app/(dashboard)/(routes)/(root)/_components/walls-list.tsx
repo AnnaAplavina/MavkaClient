@@ -61,11 +61,11 @@ export const WallsList = () => {
     return (
         <div className="border rounded-lg shadow-sm max-w-xs m-2 p-2 bg-slate-50 hover:shadow-md">
           <div className='p-2'>
-            <p className='text-lg font-semibold text-black'>Мои курсы</p>
-            <a href="/schedule">
+            <p className='text-lg font-semibold text-black'>Мои стенки</p>
+            <a href="/walls">
               <div className='flex items-center'>
                 <Maximize2  className='w-4 h-4 text-slate-500'/>
-                <p className='text-sm text-slate-500 ml-2'>Все курсы</p>
+                <p className='text-sm text-slate-500 ml-2'>Все стенки</p>
               </div>
             </a>
           </div>
