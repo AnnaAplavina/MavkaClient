@@ -1,10 +1,13 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import useToken from "./useToken";
+import LoginSignup from "./(auth)/(routes)/sign-in/page";
+import DashboardLayout from "./(dashboard)/layout";
+import Dashboard from "./(dashboard)/(routes)/walls/page";
+
+const { setToken, token, removeToken, userId } = useToken();
 
 function Router() {
-
-    const { token, removeToken, setToken, userId } = useToken();
 
     return (
         <BrowserRouter>
@@ -17,6 +20,8 @@ function Router() {
                         :(
                             <Route/>
                         )}
+                        {/* <Route path="/" exact component={Dashboard}/>
+                        <Route/> */}
                     </Routes>
                 </DashboardLayout>
             )}/>

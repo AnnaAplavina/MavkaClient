@@ -2,25 +2,25 @@
 
 import React, { useState } from 'react'
 import "./LoginSignup.css"
+import { Mail, Lock } from "lucide-react";
 
 import axios from 'axios'
-
 
 function LoginSignup (
   setToken: any
 ) {
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setEmail] = useState("");
+  const [pass, setPassword] = useState("");
   const [action, setAction] = useState("Login");
 
   const logInUser = async () => {
     await axios.post("//127.0.0.1:5000/auth/login", {
-      email,
-      password
+      username,
+      pass
     }).then((resp) => {
       if (resp.status === 200) {
-        setToken(resp.data.access_token);
+        setToken(resp.data.token);
         window.location.href = "/";
       } else {
         alert(resp);
@@ -31,12 +31,12 @@ function LoginSignup (
 };
 
 const RegisterUser = async () => {
-  await axios.post("//127.0.0.1:5000/auth/register", {
-    email,
-    password
+  await axios.post("//127.0.0.1:5000/auth/registration", {
+    username,
+    pass
   }).then((resp) => {
     if (resp.status === 200) {
-      setToken(resp.data.access_token);
+      setToken(resp.data.token);
       window.location.href = "/";
     } else {
       alert(resp);
@@ -54,15 +54,15 @@ const RegisterUser = async () => {
       </div>
         <div className="inputs">
           <div className="input">
-            <img src="./Assets/email.png" alt=''/>
+            <Mail className='mx-3' />
             <input 
               type='email' 
-              placeholder='Email'
+              placeholder='Username'
               onChange = {(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="input">
-            <img src="./Assets/password.png" alt=''/>
+            <Lock className='mx-3' />
             <input 
               type='password' 
               onChange={(e) => setPassword(e.target.value)}
@@ -72,8 +72,8 @@ const RegisterUser = async () => {
         </div>
         <div className="forgot-password">Lost password? <span>Click here!</span></div>
         <div className="submit-container">
-          <div className={action==="Login"?"submit gray":"submit"} onClick={action === "Login" ? () => {setAction("Sign Up")} : () => logInUser()}>Login</div>
-          <div className={action==="Sign Up"?"submit gray":"submit"} onClick={action==="Sign Up"? ()=>{setAction("Login")} : () => RegisterUser()}>Sign Up</div>
+          <div className={action==="Sign Up"?"submit gray":"submit"} onClick={action === "Sign Up" ? () => {setAction("Login")} : () => RegisterUser()}>Sign Up</div>
+          <div className={action==="Login"?"submit gray":"submit"} onClick={action==="Login"? ()=>{setAction("Sign Up")} : () => logInUser()}>Log In</div>
         </div>
     </div>
   )
