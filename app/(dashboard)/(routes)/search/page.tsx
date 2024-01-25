@@ -27,12 +27,6 @@ const SearchPage = async ({
 
   const categories = await getCategories();
 
-  // const categories = await db.category.findMany({
-  //   orderBy: {
-  //     name: "asc"
-  //   }
-  // });
-
   const walls = await getWalls({
     userId,
     ...searchParams,

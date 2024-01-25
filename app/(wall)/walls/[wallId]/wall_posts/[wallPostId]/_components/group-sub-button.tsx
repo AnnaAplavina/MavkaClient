@@ -2,9 +2,9 @@
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
-export const GroupSubButton = ({groupId}: {groupId: string}) => {
+export const GroupSubButton = ({wall_id}: {wall_id: string}) => {
   const onClick = () => {
-    return redirect(`/subscribe/${groupId}`)
+    return redirect(`/subscribe/${wall_id}`)
   }
 
   return (

@@ -31,7 +31,7 @@ export const WallPostsList = ({
     setIsMounted(true);
   }, []);
 
-  console.log(items);
+  // console.log(items);
   useEffect(() => {
     setWallPosts(items);
   }, [items]);

@@ -10,7 +10,7 @@ interface WallNavbarProps {
       userProgress: ProgressContent[] | null;
     })[];
   };
-  progressCount: number;
+  progressCount: boolean;
 };
 
 export const WallNavbar = ({

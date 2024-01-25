@@ -7,9 +7,9 @@ import { Mail, Lock } from "lucide-react";
 import axios from 'axios'
 
 function LoginSignup (
-  setToken: any
+  s: any
 ) {
-
+debugger
   const [username, setEmail] = useState("");
   const [pass, setPassword] = useState("");
   const [action, setAction] = useState("Login");
@@ -20,7 +20,7 @@ function LoginSignup (
       pass
     }).then((resp) => {
       if (resp.status === 200) {
-        setToken(resp.data.token);
+        props.setToken(resp.data.token);
         window.location.href = "/";
       } else {
         alert(resp);

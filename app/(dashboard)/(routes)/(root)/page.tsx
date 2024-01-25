@@ -1,13 +1,18 @@
 import React from 'react';
 import { SingleDaySchedule } from './_components/single-day-schedule';
 import { SimpleStatsModule } from './_components/simple-stats-module';
-import { WallsList } from './_components/walls-list';
+import { WallCard } from '@/components/wall-card';
+import { getAllWalls, getDashboardWalls } from '@/db_methods/methods';
+import { CategoryContent, WallContent } from '@/db_interfaces/interfaces';
+import { WallsList } from '@/components/walls-list';
 
 
-const MainPage = () => {
+const MainPage = async () => {
   
+  const { recommendedWalls, subbedWalls } = await getDashboardWalls("200006");
+
   return (    
-    <div className='bg-purple-100 w-full h-full flex flex-col'>
+    <div className='w-full h-full flex flex-col'>
         <div className='bg-gray-300 max-w-96 h-full max-h-96 min-h-56 m-16 mb-0 overflow-hidden rounded-t-2xl relative'>
           <img 
           src="https://images.unsplash.com/photo-1508247967583-7d982ea01526?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" 
@@ -32,8 +37,29 @@ const MainPage = () => {
             </div>
           </div>
         </div>
-        <div className='bg-gray-400 h-full max-h-96 min-h-56 m-16 mt-8 relative'>
+        <div className='h-full max-h-96 min-h-56 m-16 mt-8 relative'>
           <div>
+
+          <WallsList items={[...recommendedWalls, ...subbedWalls]}/>
+          {/* <div>
+            <div className="grid sm:grid-cols-2 max-h-min md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
+              {items.map((item) => (
+                <WallCard
+                  key={item.wall_id}
+                  id={item.wall_id}
+                  title={item.title}
+                  description={item.description}
+                  imageUrl={item.image_url!}
+                  progress={false}
+                  category={item?.category?.name!}
+                  wall_posts={item.wall_posts}
+                />
+              ))}
+            </div>
+            {items.length === 0 && ( <div className="text-center text-sm text-muted-foreground mt-10"> No news found </div> )}
+          </div> */}
+
+
             {/* <div>
               <SingleDaySchedule />
             </div>

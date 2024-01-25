@@ -2,42 +2,32 @@ import { auth } from "@/app/coolAuth";
 import { redirect } from "next/navigation";
 import { File } from "lucide-react";
 
-import { getWallPost } from "@/actions/get-wall-post";
+import { getWallPost } from "@/actions/get-wall-posts";
 import { Banner } from "@/components/banner";
 import { Separator } from "@/components/ui/separator";
 import { Preview } from "@/components/preview";
 
 import { GroupSubButton } from "./_components/group-sub-button";
 
-const WallPostIdPage = async ({
-  params
-}: {
-  params: { wallId: string; wallPostId: string }
-}) => {
+const WallPostIdPage = async ({ params }: { params: { wallId: string; wallPostId: string } }) => {
   const { userId } = auth();
   
   if (!userId) {
     return redirect("/");
   } 
 
-  const {
-    wallPost,
-    wall,
-    attachments,
-    nextWallPost,
-    userFeedback
-  } = await getWallPost({
+  const { wall_post, wall, attachments, nextWallPost, userFeedback } = await getWallPost({
     userId,
     wallPostId: params.wallPostId,
     wallId: params.wallId,
   });
 
-  if (!wallPost || !wall) {
+  if (!wall_post || !wall) {
     return redirect("/")
   }
 
 
-  const isLocked = !wallPost.is_available && !wallPost.is_preview;
+  const isLocked = !wall_post.is_available && !wall_post.is_preview;
   // TODO const completeOnEnd = !userFeedback?.seen;
 
   return ( 
@@ -58,24 +48,15 @@ const WallPostIdPage = async ({
         <div>
           <div className="p-4 flex flex-col md:flex-row items-center justify-between">
             <h2 className="text-2xl font-semibold mb-2">
-              {wall_post.title}
+              {wall_post.wall_post_name}
             </h2>
-            {purchase ? (
-              <WallProgressButton
-                wallPostId={params.wallPostId}
-                wallId={params.wallId}
-                nextWallPostId={nextWallPost?.id}
-                isCompleted={!!userFeedback?.isCompleted}
-              />
-            ) : (
               <GroupSubButton
-                wallId={params.wallId}
+                wall_id={params.wallId}
               />
-            )}
           </div>
           <Separator />
           <div>
-            <Preview value={wall_post.description!} />
+            <Preview value={wall_post.wall_post_description!} />
           </div>
           {!!attachments.length && (
             <>

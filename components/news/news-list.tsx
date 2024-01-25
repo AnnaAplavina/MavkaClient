@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { NewsCard } from "./news-card"
 import { getNews } from '@/db_methods/methods';
+import { NewsContent } from '@/db_interfaces/interfaces';
 
 const categories = ['Test']
 
@@ -23,10 +24,10 @@ function formatDate(inputDate: string) {
 }
 
 export const News = () => {
-  const [items, setWalls] = useState([]);
+  const [items, setNews] = useState<NewsContent[]>([]);
 
   useEffect(() => {
-    const fetchData = async () => { setWalls(await getNews()); }
+    const fetchData = async () => { setNews(await getNews()); }
     fetchData().catch(console.error);
   }, [])
 
@@ -37,14 +38,14 @@ export const News = () => {
       <div className="grid sm:grid-cols-2 max-h-min md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
         {items.map((news) => (
           <NewsCard 
-            key={news[0]}
-            id={String(news[0])}
-            title={news[1]}
-            content={news[3]}
-            author={news[4]}
-            date={formatDate(news[5])}
-            category={categories[news[0]]} // TODO
-            imageUrl={news[2]}
+            key={news.id}
+            id={String(news.id)}
+            title={news.title}
+            content={news.content}
+            author={news.author}
+            date={formatDate(news.date)}
+            category={categories[parseInt(news.id)]} // TODO
+            image_url={news.image_url}
           />
         ))}
       </div>

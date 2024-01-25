@@ -23,20 +23,22 @@ export const ApplicationsForm = async ({params}:{params: {wallId: string}}) => {
   }
 
   const wall = await getWallById(params.wallId);
-  wall.wall_posts = await getWallPosts(params.wallId);
-  wall.attachment = await getAttachmentsByWall(params.wallId);
+  const wall_posts = await getWallPosts(params.wallId);
+  const attachment = await getAttachmentsByWall(params.wallId);
 
   if (!wall) {
     return redirect("/");
   }   
 
-  const sub_tiers = [{
-
-  },
-  {
-    
-  }
-    //TODO
+  const sub_tiers = [
+    {
+      name: "Sub Tier 1",
+      id: 0
+    },
+    {
+      id: 1,
+      name: "Sub Tier 2"
+    }
   ];
 
   const isComplete = true; // TODO Check if complete

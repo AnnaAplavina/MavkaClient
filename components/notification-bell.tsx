@@ -17,27 +17,27 @@ interface State {
 
 const items_notif = [
     {
-      text: "Heheheh",
+      text: "Уведомление 1",
       read: false,
     },
     {
-      text: "Hehehehf",
+      text: "Уведомление 2",
       read: false,
     },
     {
-      text: "Heheheha",
+      text: "Уведомление 3",
       read: false,
     },
     {
-      text: "Hehehehe",
+      text: "Уведомление 4",
       read: false,
     },
     {
-      text: "Hehehehr",
+      text: "Уведомление 5",
       read: false,
     },
     {
-      text: "Heheheht",
+      text: "Уведомление 6",
       read: true,
     },
   ]

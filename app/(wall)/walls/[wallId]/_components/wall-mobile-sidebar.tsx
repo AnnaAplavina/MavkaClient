@@ -9,7 +9,7 @@ interface WallMobileSidebarProps {
       userProgress: ProgressContent[] | null;
     })[];
   };
-  progressCount: number;
+  progressCount: boolean;
 };
 
 export const WallMobileSidebar = ({ 

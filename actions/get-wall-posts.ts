@@ -8,18 +8,14 @@ interface GetWallPostProps {
   wallPostId: string;
 };
 
-export const getWallPost = async ({
-  userId,
-  wallId,
-  wallPostId,
-}: GetWallPostProps) => {
+export const getWallPost = async ({ userId, wallId, wallPostId }: GetWallPostProps) => {
   try {
     
     const is_member = await checkIsMember({userId, wallId});
     const wall = await getWallById(wallId);
-    const wallPost = await getWallPostById({wallPostId});
+    const wall_post = await getWallPostById({wallPostId});
 
-    if (!wallPost.is_available || !wall.is_available) {
+    if (!wall_post.is_available || !wall.is_available) {
       throw new Error("Запись или стена недоступны на данный момент");
     }
 
@@ -33,19 +29,18 @@ export const getWallPost = async ({
 
     attachments = await getAttachments({wallPostId});
 
-    const position = wallPost.position;
+    const position = wall_post.position;
     nextWallPost = await getWallPostByPosition({wallId, position});
 
     const userFeedback = await getUserFeedback();
 
 
     return {
-      wallPost,
+      wall_post,
       wall,
       attachments,
       nextWallPost,
-      userFeedback,
-      is_member,
+      userFeedback
     };
   } catch (error) {
     console.log("[GET_WALL_POST]", error);
@@ -54,8 +49,7 @@ export const getWallPost = async ({
       wall: null,
       attachments: [],
       nextWallPost: null,
-      userFeedback: null,
-      is_member: null,
+      userFeedback: null
     }
   }
 }

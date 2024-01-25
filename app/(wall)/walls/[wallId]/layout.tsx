@@ -18,6 +18,9 @@ const WallLayout = async ({ children, params }: { children: React.ReactNode; par
     return redirect("/");
   }
 
+  // const progressCount = newPosts / 100;
+  const progressCount = true;
+
 
   return (
     <div className="h-full">

@@ -15,8 +15,8 @@ export interface WallPostContent {
     wall_post_name: string;
     wall_post_description: string;
     wall_post_text: string;
-    is_available: string;
-    is_preview: string;
+    is_available: string | boolean;
+    is_preview: string | boolean;
     position: string;
     wall_id: string;
     created_at: string;
@@ -42,4 +42,14 @@ export interface ProgressContent {
 export interface CategoryContent {
     id: string;
     name: string;
+}
+
+export interface NewsContent {
+    id: string;
+    title: string;
+    content: string;
+    author: string | null;
+    date: string;
+    category: string;
+    image_url: string | null;
 }

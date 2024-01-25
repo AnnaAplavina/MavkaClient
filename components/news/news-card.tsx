@@ -1,24 +1,12 @@
 "use client"
 import { User, Clock } from "lucide-react";
-
 import { IconBadge } from "@/components/icon-badge";
-
 import { useState } from 'react';
-
 import { Modal } from "./news-modal";
-
-interface NewsCardTypes {
-    id: string;
-    title: string;
-    content: string;
-    author: string | null;
-    date: string;
-    category: string;
-    imageUrl: string | null;
-  };
+import { NewsContent } from "@/db_interfaces/interfaces";
 
 
-export const NewsCard = ({id, title, content, author, date, category, imageUrl}: NewsCardTypes) => {
+export const NewsCard = ({id, title, content, author, date, category, image_url}: NewsContent) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -36,20 +24,20 @@ export const NewsCard = ({id, title, content, author, date, category, imageUrl}:
     return (
       <div onClick={switchModal}>        
         <div className="group shadow-sm hover:shadow-lg transition overflow-hidden border rounded-lg p-3 h-full">
-        {imageUrl !== null ?
+        {image_url !== null ?
           <div className="relative w-full aspect-video rounded-md overflow-hidden">
             <img
               className="object-cover w-full h-full"
               alt={title}
-              src={imageUrl}
+              src={image_url}
             />
           </div> 
         : null}
           <div className="flex flex-col pt-2">
-            {imageUrl !== null ? <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-1">{title}</div> : null}
-            {imageUrl === null ? <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-3">{title}</div> : null}
-            {imageUrl !== null ? <p className="text-xs overflow-hidden max-h-24 line-clamp-5">{content}</p> : null}
-            {imageUrl === null ? <p className="text-xs overflow-hidden max-h-72 line-clamp-15">{content}</p> : null}
+            {image_url !== null ? <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-1">{title}</div> : null}
+            {image_url === null ? <div className="text-lg md:text-base font-medium group-hover:text-sky-700 transition line-clamp-3">{title}</div> : null}
+            {image_url !== null ? <p className="text-xs overflow-hidden max-h-24 line-clamp-5">{content}</p> : null}
+            {image_url === null ? <p className="text-xs overflow-hidden max-h-72 line-clamp-15">{content}</p> : null}
             <p className="text-xs text-muted-foreground">
               {category}
             </p>
@@ -72,7 +60,7 @@ export const NewsCard = ({id, title, content, author, date, category, imageUrl}:
           content={content}
           author={author}
           date={date}
-          imageUrl={imageUrl}
+          imageUrl={image_url}
           category={category}
           isOpen={isModalOpen}
           onClose={closeModal}

@@ -13,15 +13,19 @@ export const Navbar = () => {
   if (pathname === '/news') {
     pageTitle = 'Новости';
   } else if (pathname === '/') {
-    pageTitle = 'Главная';
-  } else if (pathname === '/socials') {
-    pageTitle = 'Группы';
+    pageTitle = 'Моя страница';
+  } else if (pathname === '/walls') {
+    pageTitle = 'Стенки';
   } else if (pathname === '/my') {
     pageTitle = 'Моя страница';
   } else if (pathname === '/audio') {
     pageTitle = 'Аудио';
   } else if (pathname === '/video') {
     pageTitle = 'Видео';
+  } else if (pathname === '/message') {
+    pageTitle = 'Диалоги';
+  } else if (pathname === '/search') {
+    pageTitle = 'Поиск';
   }
 
   return (

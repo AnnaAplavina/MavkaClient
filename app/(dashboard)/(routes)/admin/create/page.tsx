@@ -40,15 +40,12 @@ const CreatePage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      
-      console.log("hi")
       // const response = await axios.post("api/walls", values);
       const response = await axios.post(`${getAddress()}/walls`, {
         title: values.title,
         user_id : "user_2WlV1B9tAJ82SQmgCPWn0FOvX7o"
       });
-      
-      console.log("hi?")
+    
       router.push(`/admin/walls/${response.data}`);
       toast.success("Wall created");
     } catch {

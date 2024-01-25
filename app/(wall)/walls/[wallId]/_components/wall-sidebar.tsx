@@ -8,34 +8,32 @@ import { WallSidebarItem } from "./wall-sidebar-item";
 
 interface WallSidebarProps {
   wall: WallContent & {
-    wall_posts: (WallPostContent & {
-      userProgress: ProgressContent[] | null;
-    })[]
+    wall_posts: WallPostContent[]
   };
-  progressCount: number;
+  progressCount: boolean;
 };
 
-export const WallSidebar = async ({
-  wall,
-  progressCount,
-}: WallSidebarProps) => {
+export const WallSidebar = async ({ wall, progressCount, }: WallSidebarProps) => {
   const { userId } = auth();
 
   if (!userId) {
     return redirect("/");
   }
 
+  console.log(wall);
+
   return (
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="p-8 flex flex-col border-b">
         <h1 className="font-semibold">
-          {wall.name}
+          {wall.title}
         </h1>
         {wall.is_available && (
           <div className="mt-10">
             <WallProgress
               variant="success"
               value={progressCount}
+              size="default"
             />
           </div>
         )}
@@ -46,7 +44,8 @@ export const WallSidebar = async ({
             key={wall_post.wall_post_id}
             id={wall_post.wall_post_id}
             label={wall_post.wall_post_name}
-            isCompleted={!!wall_post.userProgress?.[0]?.is_completed}
+            // isCompleted={!!wall_post.userProgress?.[0]?.is_completed}
+            isCompleted={true}
             wallId={wall.wall_id}
             isLocked={!(wall_post.is_available || wall_post.is_preview)}
           />

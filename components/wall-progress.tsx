@@ -26,7 +26,7 @@ export const WallProgress = ({
     <div>
       <Progress
         className="h-2"
-        value={value ? 1 : 0}
+        value={value ? 100 : 0}
         variant={variant}
       />
       <p className={cn(

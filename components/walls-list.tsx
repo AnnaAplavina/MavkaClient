@@ -1,10 +1,5 @@
-import { WallContent } from '@/db_interfaces/interfaces';
+import { WallContent, CategoryContent } from '@/db_interfaces/interfaces';
 import { WallCard } from "@/components/wall-card";
-
-interface CategoryContent {
-  id: string;
-  name: string;
-}
 
 type WallWithCategory = WallContent & {
   category: CategoryContent | null;
@@ -19,7 +14,6 @@ export const WallsList = ({
   items
 }: WallsListProps) => {
   
-  console.log(items);
   return (
     <div>
       <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
@@ -28,9 +22,11 @@ export const WallsList = ({
             key={item.wall_id}
             id={item.wall_id}
             title={item.title}
+            description={item.description}
             imageUrl={item.image_url!}
             progress={false}
             category={item?.category?.name!}
+            wall_posts={item.wall_posts}
           />
         ))}
       </div>

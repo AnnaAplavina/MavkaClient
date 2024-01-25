@@ -1,6 +1,6 @@
 "use client";
 
-import { BarChart, Compass, Layout, List, Newspaper, Home, Zap } from "lucide-react";
+import { BarChart, Compass, Layout, List, Newspaper, Home, Zap, PencilLine, ListMusic, Camera } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { SidebarItem } from "./sidebar-item";
 
@@ -26,9 +26,24 @@ const guestRoutes = [
     href: "/search",
   },
   {
+    icon: PencilLine,
+    label: "Диалоги",
+    href: "/message",
+  },
+  {
     icon: Zap,
-    label: "InfScroll",
+    label: "Рекомендации",
     href: "/inf",
+  },
+  {
+    icon: ListMusic,
+    label: "Аудио",
+    href: "/audio",
+  },
+  {
+    icon: Camera,
+    label: "Видео",
+    href: "/video",
   }
 ];
 
