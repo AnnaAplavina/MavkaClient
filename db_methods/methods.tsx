@@ -789,23 +789,23 @@ export async function getAttachments({wallPostId} : {wallPostId:string}) {
 
 
 
-export async function getWallPosts(wallId : string) : Promise<any> {
+export async function getWallPosts(wallId : string) : Promise<WallPostContent[]> {
     if (TEST_RUN) {
         return testWallPosts;
     }
-  const apiUrl = `${SERVER_ADDRESS}/wall_posts/all`;
-  const resp = await axios.get(apiUrl, {
-      params: {
-          wall_id: wallId
-      }
-  })
-  .then(response => {
-      return response.data;
-  })
-  .catch(error => {
-      console.error(error);
-  });
-  return resp;
+    const apiUrl = `${SERVER_ADDRESS}/wall_posts/all`;
+    const resp = await axios.get(apiUrl, {
+        params: {
+            wall_id: wallId
+        }
+    })
+    .then(response => {
+        return response.data;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    return resp;
 }
 
 

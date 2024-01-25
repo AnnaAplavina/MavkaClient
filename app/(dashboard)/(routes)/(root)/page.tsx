@@ -1,16 +1,11 @@
 import React from 'react';
 import { SingleDaySchedule } from './_components/single-day-schedule';
 import { SimpleStatsModule } from './_components/simple-stats-module';
-import { WallCard } from '@/components/wall-card';
-import { getAllWalls, getDashboardWalls } from '@/db_methods/methods';
-import { CategoryContent, WallContent } from '@/db_interfaces/interfaces';
-import { WallsList } from '@/components/walls-list';
+import { WallPostsList } from '@/components/wall-posts-list';
 
 
 const MainPage = async () => {
-  
-  const { recommendedWalls, subbedWalls } = await getDashboardWalls("200006");
-
+  const user_id = "200006"; // TODO
   return (    
     <div className='w-full h-full flex flex-col'>
         <div className='bg-gray-300 max-w-96 h-full max-h-96 min-h-56 m-16 mb-0 overflow-hidden rounded-t-2xl relative'>
@@ -21,6 +16,7 @@ const MainPage = async () => {
             <img
             src="https://www.film.ru/sites/default/files/people/1456176-2225954.jpeg"
             className='w-40 h-40 object-cover absolute z-10 bottom-4 left-6 rounded-full border-4  border-gray-900'/>
+            <p className='absolute z-10 bottom-24 left-48 text-white font-sans text-lg'>Boe Jiden</p>
           </div>
           <div className='bg-gray-900 flex min-h-14 w-full max-w-full pl-64 absolute bottom-0'>
             <div className='p-6 text-slate-500 font-sans border-b-4 border-blue-400 border-solid'>
@@ -40,7 +36,7 @@ const MainPage = async () => {
         <div className='h-full max-h-96 min-h-56 m-16 mt-8 relative'>
           <div>
 
-          <WallsList items={[...recommendedWalls, ...subbedWalls]}/>
+          <WallPostsList user_id={user_id}/>
           {/* <div>
             <div className="grid sm:grid-cols-2 max-h-min md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
               {items.map((item) => (
