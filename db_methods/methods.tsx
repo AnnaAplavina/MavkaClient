@@ -1,10 +1,16 @@
-import { WallPostContent } from '@/db_interfaces/interfaces';
+import useToken from '@/app/useToken';
+import { UserContent, WallPostContent } from '@/db_interfaces/interfaces';
 import axios from 'axios';
 
 // const SERVER_ADDRESS = process.env.SERVER_ADDRESS;
 // const SERVER_ADDRESS = "http://192.168.31.23:80"
 const SERVER_ADDRESS = "http://api.imworse.space";
 const TEST_RUN = true;
+const TEST_NODE_RUN = true;
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNzA2MzI2NTQ3LCJleHAiOjE3MDY0MTI5NDd9.ZvTkzsvqXFZ5o2sb34F7SKv47YEeIQam9l-gRbUAfxM    ";
+// const { setToken, token, removeToken, userId } = useToken();
+// const token = localStorage.getItem('token');
 
 export function getAddress() {
   return SERVER_ADDRESS;
@@ -636,24 +642,45 @@ export async function getWallsByIdAndAdmin(admin_id : string, wall_id: string) :
 }
 
 
-export async function searchWalls(title?:string, categoryId?:string) : Promise<any> {
+export async function searchWalls(title?:string, category_id?:string) : Promise<any> {
+    console.log(title);
+    console.log(category_id);
+    if (TEST_NODE_RUN) {
+        const resp_node = await axios.put("//127.0.0.1:5000/walls/search-walls", {
+            title: title,
+            category_id: category_id
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            // console.log(response);
+            return response.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        return resp_node;
+    }
+    
     if (TEST_RUN) {
         return testWalls;
     }
     const apiUrl = `${SERVER_ADDRESS}/walls/all`;
     const resp = await axios.get(apiUrl, {
-      params: {
-          title: title,
-          category_id: categoryId
-      }
-  })
-  .then(response => {
-      return response.data;
-  })
-  .catch(error => {
-      console.error(error);
-  });
-  return resp;
+        params: {
+            title: title,
+            category_id: category_id
+        }
+    })
+    .then(response => {
+        return response.data;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    return resp;
 }
 
 
@@ -859,6 +886,21 @@ export async function getGroupedWallsByAdmin(adminId : string) : Promise<any> {
 
 
 export async function getCategories() : Promise<any> {
+    if (TEST_NODE_RUN) {
+        const resp_node = await axios.get("//127.0.0.1:5000/walls/wall-themes", {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        return resp_node;
+    }
+
     if (TEST_RUN) {
         let data = [
             {id: "0", name: "Юмор"},
@@ -929,4 +971,32 @@ export async function getDashboardWalls(userId: string) {
     const recommendedWalls = [testWalls[0], testWalls[2], testWalls[3], testWalls[4], testWalls[5]];
     const subbedWalls = [testWalls[1]];
     return { recommendedWalls, subbedWalls };
+}
+
+export async function getUserByUsername(username: string) : Promise<UserContent> {
+    if (TEST_NODE_RUN) {
+        const resp_node = await axios.get(`//127.0.0.1:5000/users/${username}`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+        .then(response => {
+            return response.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+        return resp_node;
+    }
+
+    // if (TEST_RUN) {
+        const geralt = {
+            username: "gervant2",
+            first_name: "Геральт",
+            last_name: "Ривийский",
+            wall_id: "6",
+            avatar_url: "https://i.ibb.co/t33h8S6/witcher.jpg"
+        };
+        return geralt;
+    // }
 }

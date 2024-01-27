@@ -53,3 +53,11 @@ export interface NewsContent {
     category: string;
     image_url: string | null;
 }
+
+export interface UserContent {
+    username: string;
+    first_name: string;
+    last_name: string;
+    wall_id: string;
+    avatar_url: string;
+}

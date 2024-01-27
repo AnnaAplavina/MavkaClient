@@ -3,13 +3,11 @@ import { SingleDaySchedule } from './_components/single-day-schedule';
 import { SimpleStatsModule } from './_components/simple-stats-module';
 import { WallPostsList } from '@/components/wall-posts-list';
 import { getUserByUsername } from '@/db_methods/methods';
-import { auth } from '@/app/coolAuth';
 
 
-const MainPage = async () => {
-  const {userId, username} = auth()
-  const user_id = userId;
-  const user_info = await getUserByUsername(username);
+const UserPage = async ({params}:{params: {username: string}}) => {
+  const user_id = "200005"; // TODO
+  const user_info = await getUserByUsername(params.username);
   return (    
     <div className='w-full h-full flex flex-col'>
         <div className='bg-gray-300 max-w-96 h-full max-h-96 min-h-56 m-16 mb-0 overflow-hidden rounded-t-2xl relative'>
@@ -42,24 +40,6 @@ const MainPage = async () => {
           <div>
 
           <WallPostsList user_id={user_id}/>
-          {/* <div>
-            <div className="grid sm:grid-cols-2 max-h-min md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
-              {items.map((item) => (
-                <WallCard
-                  key={item.wall_id}
-                  id={item.wall_id}
-                  title={item.title}
-                  description={item.description}
-                  imageUrl={item.image_url!}
-                  progress={false}
-                  category={item?.category?.name!}
-                  wall_posts={item.wall_posts}
-                />
-              ))}
-            </div>
-            {items.length === 0 && ( <div className="text-center text-sm text-muted-foreground mt-10"> No news found </div> )}
-          </div> */}
-
 
             {/* <div>
               <SingleDaySchedule />
@@ -76,4 +56,4 @@ const MainPage = async () => {
   );
 }
 
-export default MainPage;
+export default UserPage;

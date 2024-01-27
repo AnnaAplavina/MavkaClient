@@ -10,24 +10,28 @@ type WallWithFeedbackWithCategory = WallContent & {
 type GetWalls = {
   userId: string;
   title?: string;
-  categoryId?: string;
+  category_id?: string;
 };
 
 export const getWalls = async ({
   userId,
   title,
-  categoryId
+  category_id
 }: GetWalls): Promise<WallWithFeedbackWithCategory[]> => {
   try {
-    const walls = await searchWalls(title, categoryId);
-    console.log(walls);
+    if (!title) {
+      title = "";
+    }
+    console.log(title, category_id);
+    const walls = await searchWalls(title, category_id);
+    // console.log(walls);
     walls.map(async (wall: any) => {
       // wall.image_url = getImage(wall.image_url);
       wall.wall_posts = await getWallPosts(wall.id);
     })
-    walls.map((wall: any) => {
-      console.log(wall);
-    })
+    // walls.map((wall: any) => {
+    //   console.log(wall);
+    // })
     
 
     const wallsWithFeedback: WallWithFeedbackWithCategory[] = await Promise.all(
